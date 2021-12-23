@@ -31,6 +31,7 @@ export const EditableSpan = (props: EditableSpanType) => {
                 autoFocus={true}
                 onBlur={offEditMode}
                 onChange={changeTitle}
+                fullWidth
             />
             : <span
                 onDoubleClick={onEditMode}>

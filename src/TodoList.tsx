@@ -76,7 +76,8 @@ function TodoList(props: PropsType) {
             display: "flex",
             flexDirection: 'column',
             justifyContent: 'space-between',
-            minHeight: '300px'
+            minHeight: '300px',
+            maxWidth: '300px'
         }}>
             <div>
                 <Typography

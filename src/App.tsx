@@ -3,7 +3,8 @@ import './App.css';
 import TodoList from "./TodoList";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
-import {Paper} from "@material-ui/core";
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
+import {Menu} from "@material-ui/icons";
 
 // Create
 // Read
@@ -113,7 +114,8 @@ function App() {
             tasksForRender = tasksForRender.filter(t=> t.isDone)
         }
         return(
-            <Paper key={tl.id} elevation={8} style={{padding: '20px'}}>
+            <Grid item key={tl.id}>
+            <Paper  elevation={8} style={{padding: '20px'}}>
             <TodoList
                 id={tl.id}
                 title={tl.title}
@@ -128,13 +130,34 @@ function App() {
                 changeTodolistTitle={changeTodolistTitle}
             />
             </Paper>
+            </Grid>
         )
     })
     //UI:
     return (
         <div className="App">
-            <AddItemForm addItem={addTodolist}/>
-            {todoListComponents}
+            <AppBar position="static">
+                <Toolbar style={{justifyContent: 'space-between'}}>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <Menu />
+                    </IconButton>
+                    <Typography variant="h6">
+                        Todolists
+                    </Typography>
+                    <Button color='inherit' variant={'outlined'}>Login</Button>
+                </Toolbar>
+            </AppBar>
+            <Container fixed>
+                <Grid
+                    container
+                    style={{padding: '20px 0'}}
+                >
+                    <AddItemForm addItem={addTodolist}/>
+                </Grid>
+                <Grid container spacing={5}>
+                    {todoListComponents}
+                </Grid>
+            </Container>
         </div>
     );
 }
