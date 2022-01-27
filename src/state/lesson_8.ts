@@ -5,9 +5,7 @@ export function sum(...nums: Array<any>): number {
      //console.log(nums)
     //...здесь пишем код.
     // В return стоит "заглушка", чтоб typescript не ругался
-    let sum =  nums.reduce(function (acc, curr) {
-       return   acc + curr
-    });
+    let sum =  nums.reduce((acc, curr) => acc + curr);
     return sum;
 }
 
@@ -23,7 +21,7 @@ export function sum(...nums: Array<any>): number {
 export function getTriangleType(a: number,b: number,c: number): string {
     //...здесь пишем код.
     // В return стоит "заглушка", чтоб typescript не ругался
-    /*if(a === b && b === c && c === a ) {
+   /* if(a === b && b === c && c === a ) {
         return "10";
     }
     if (a !== b && a !== c && c === b) {
@@ -38,7 +36,7 @@ export function getTriangleType(a: number,b: number,c: number): string {
     return "00";*/
 
 
- /*if(a + b > c && b + c > a && c + a > b) {
+ if(a + b > c && b + c > a && c + a > b) {
      if (a === b && b === c) {
          return  '10'
      } else  if (a === b || b === c || c === a) {
@@ -48,7 +46,7 @@ export function getTriangleType(a: number,b: number,c: number): string {
      }
  } else {
      return '00'
- }*/
+ }
 
     return '10'
 
@@ -59,19 +57,21 @@ export function getTriangleType(a: number,b: number,c: number): string {
 // 3. Функция getSum принимает параметром целое число и возвращает
 // сумму цифр этого числа
 
-export function getSum(number: number): number{
-    /*let number1 = String(number)
+export function getSum(number: number): number {
+   /* let number1 = String(number)
         .split('')
        // .map(el => Number(el))
         .reduce((a, b) => a + Number(b) , 0)*/
 
 
 
-   /* let sum = 0;
+
+
+    let sum = 0;
     while (number) {
         sum += number % 10;
         number = (number - number % 10) / 10;
-    }*/
+    }
 
 
     /* let sum = 0;
@@ -83,7 +83,7 @@ export function getSum(number: number): number{
 
     //...здесь пишем код.
     // В return стоит "заглушка", чтоб typescript не ругался
-    return 10;
+    return sum;
 }
 
 
@@ -114,14 +114,14 @@ export const isEvenIndexSumGreater = (arr: Array<number>): boolean => {
         result -= el : result += el)
     return   result > 0*/
 
-    /*const sums: Array<number> = arr.reduce((acc, el, i) => {
+    const sums: Array<number> = arr.reduce((acc, el, i) => {
         acc[i % 2] += el
         return acc
     }, [0, 0])
-    return sums[0] > sums[1]*/
+    return sums[0] > sums[1]
 
 
-    return  true;
+   //return  true;
 }
 
 // 5. Функция getSquarePositiveIntegers принимает параметром массив чисел и возвращает новый массив. 
@@ -142,22 +142,31 @@ export function getSquarePositiveIntegers(array: Array<number>): Array<number> {
 // Попробуйте реализовать функцию без использования перебирающих методов.
 
 export function sumFirstNumbers(N: number): number {
+    if (N > 0) {
+        N += sumFirstNumbers(N - 1)
+    }
+    return N
 
+
+
+/*let sum = 0;
+while (N >= 0) {
+    sum +=N
+    N--
+}*/
     /*if (N === 0) {
         return  0
     }
     //...здесь пишем код.
     // В return стоит "заглушка", чтоб typescript не ругался
     return sumFirstNumbers(N -1) + N*/
-
-
-    /*if (N === 0) {
+   /* if (N === 0) {
         return 0;
     } else {
         return (N * (N + 1) / 2)
     }*/
 
-    return 5;
+    //return sum;
 
 }
 
@@ -171,7 +180,16 @@ export function sumFirstNumbers(N: number): number {
 
 
 export function getBanknoteList(amountOfMoney: number): Array<number> {
+    const  banknotes = [1000, 500, 100, 50, 20, 10, 5, 2, 1];
+    const result = [];
+        for (let i = 0; i < banknotes.length; i++) {
+            while (amountOfMoney - banknotes[i] >= 0) {
+                amountOfMoney -= banknotes[i];
+                result.push(banknotes[i]);
+            }
+
+        }
     //...здесь пишем код.
     // В return стоит "заглушка", чтоб typescript не ругался
-    return [1]
+    return result;
 }
